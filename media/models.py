@@ -7,7 +7,7 @@ from user_interaction.models import Post
 
 class Image(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    image = models.ImageField(null=True, blank=True, upload_to="images/")
+    image = models.ImageField(null=True, blank=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
     def __str__(self):
