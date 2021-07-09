@@ -20,5 +20,5 @@ class ProfileView(View):
         return render(request, template, {'profile': profile_user, 'posts': posts})
 
 
-class ProfileEdit(View):
+class ProfileEditView(View):
     ...

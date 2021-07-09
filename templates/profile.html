@@ -1,7 +1,15 @@
 {% extends 'index.html' %}
 {% block content %}
 
-<h2>{{profile}}</h2>
-<h2>{{posts}}</h2>
+<h2>profile name: {{profile}}</h2>
 
+{% for foo in posts%}
+    <div>title: {{foo.title}}</div>
+    <div>description: {{foo.description}}</div>
+    <div>likes: {{foo.likes}}</div>
+    <div>dislikes:{{foo.dislikes}}</div>
+    <div>post-date:{{foo.post_date}}</div>
+    <div>username: {{foo.author.username}}</div>
+    <hr>
+{% endfor %}
 {% endblock%}
