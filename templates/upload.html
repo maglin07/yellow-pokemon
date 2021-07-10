@@ -27,14 +27,15 @@
     <h3 style = 'margin-left: 80px'>Upload a Photo</h3>
     {% csrf_token %}
      {{ post_form.as_p }}
+     {{image_form.as_p}}
     <button type="submit">Upload</button>
-    <input style='margin-left:110px' type = "submit", value"Submit"><br><br>  
+    <!-- <input style='margin-left:110px' type = "submit", value"Submit"><br><br>   -->
   </form>
   
-  <!-- {% if Photo %}
-    <h3>Succesfully uploaded : {{Photo.title}}</h3>
+  <!-- {% if image %}
+    <h3>Succesfully uploaded : {{image.title}}</h3>
     <div class = 'photo'>
-    <img src="{{ Photo.image.url}}" alt="connect" style="max-height:100px">
+    <img src="{{ image.image.url}}" alt="connect" style="max-height:100px">
     </div>
     {%else%}
     <h3>Sorry There was a problem Try Again.</h3>

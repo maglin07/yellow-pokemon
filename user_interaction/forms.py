@@ -13,9 +13,20 @@ from authentication.models import Author
 class PostForm(forms.Form):
     author = forms.ModelChoiceField(queryset=Author.objects.all())
     title = forms.CharField(max_length=50)
-    Description = forms.CharField(widget=forms.Textarea)
+    description = forms.CharField(widget=forms.Textarea)
 
 
 
 class ImageForm(forms.Form):
     image = forms.FileField()
+
+
+
+# class ImageForm(forms.ModelForm):
+#     class Meta:
+#         model = Image
+#         fields =("Image")
+#         Widgets ={
+#             'image': forms.FileField()
+#         }
+      
