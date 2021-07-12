@@ -1,0 +1,7 @@
+<div>
+  <form class="marg" method="post" enctype="multipart/form-data">
+    <h3>Upload a Photo</h3>
+    {% csrf_token %} {{ post_form.as_p }} {{image_form.as_p}}
+    <button type="submit">Upload</button>
+  </form>
+</div>

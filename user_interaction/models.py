@@ -10,8 +10,9 @@ class Post(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=250)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    likes = models.IntegerField()
-    dislikes = models.IntegerField()
+    likes = models.IntegerField(default = 0, null = True)
+    dislikes = models.IntegerField(default = 0, null = True)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
 
     def __str__(self):
         return self.title

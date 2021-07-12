@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, reverse, redirect, HttpResponseRedirect
@@ -10,17 +11,19 @@ from authentication.forms import AuthorForm
 
 # Create your views here.
 
-class ProfileView(View):
-
-    def get(self, request, id):
+class ProfileView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    
+    def get(self, request, user_id: int):
         template = 'profile.html'
-        profile_user = Author.objects.get(id=id)
+        profile_user = Author.objects.get(id=user_id)
         posts = Post.objects.filter(author=profile_user)
         return render(request, template, {'profile': profile_user, 'posts': posts})
 
 
-def ProfileUpdateView(request, id):
-    author = Author.objects.get(id=id)
+@login_required
+def ProfileUpdateView(request, user_id):
+    author = Author.objects.get(id=user_id)
 
     if request.method == 'POST':
         form = AuthorForm(request.POST)
@@ -31,7 +34,7 @@ def ProfileUpdateView(request, id):
             author.first_name = data['first_name']
             author.last_name = data['last_name']
             author.save()
-        return HttpResponseRedirect(reverse("profile", args=(id,)))
+        return HttpResponseRedirect(reverse("profile", args=(user_id,)))
 
     form = AuthorForm(initial={
         'username': author.username,
@@ -40,5 +43,3 @@ def ProfileUpdateView(request, id):
         'last_name': author.last_name
     })
     return render(request, 'generic_form.html', {'form': form})
-
-
