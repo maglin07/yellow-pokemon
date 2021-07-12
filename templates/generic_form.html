@@ -1,13 +1,7 @@
-{% extends 'index.html' %} {% block content %}
+{% block content %}
 
 <form enctype="multipart/form-data" action="" method="post">
   {% csrf_token %} {{ form.as_p }}
   <input type="submit" value="Submit" />
-  {% if request.get_full_path == '/signup/' %}
-  <h2>Sign Up</h2>
-  {% else %}
-  <h2>Log-In</h2>
-  {% endif %}
 </form>
-<a href="/signup/">Dont have an account? Click here to create an account</a>
-{% endblock%}
+{% include 'footer.html' %} {% endblock%}
