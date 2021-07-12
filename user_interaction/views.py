@@ -47,11 +47,12 @@ class NewPostView(LoginRequiredMixin, View):
                     author=request.user,
                     image=data['image']
                 )
-                return render(request, 'profile.html', {'form': form})
+                return HttpResponseRedirect(reverse('homepage'))
 
 
-class PostDeleteView(View):
-
+class PostDeleteView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    
     def get(self, request, post_id):
         post = Post.objects.get(id=post_id)
         post.delete()
