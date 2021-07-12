@@ -12,6 +12,7 @@ class Post(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     likes = models.IntegerField(default = 0, null = True)
     dislikes = models.IntegerField(default = 0, null = True)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
 
     def __str__(self):
         return self.title

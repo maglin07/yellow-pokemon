@@ -5,10 +5,10 @@ from user_interaction.models import Post
 # Create your models here.
 
 
-class Image(models.Model):
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='images/', null=True, blank=True)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+# class Image(models.Model):
+#     author = models.ForeignKey(Author, on_delete=models.CASCADE)
+#     image = models.ImageField(upload_to='images/', null=True, blank=True)
+#     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return f'{self.author} - {self.id}'
+#     def __str__(self):
+#         return f'{self.author} - {self.id}'
