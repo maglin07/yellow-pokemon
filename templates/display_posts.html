@@ -1,6 +1,7 @@
 {% load static %} {% for foo in posts %}
 
 <div>
+  <p>Author: <a href="/profile/{{foo.author.id}}/">{{foo.author}}</a></p>
   <a href="/post/{{foo.id}}/">
     <img src="{% static foo.image %}" class="card-img" alt="Post Image" />
   </a>
