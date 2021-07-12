@@ -27,9 +27,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='homepage'),
     path('uploads/', views.image_upload_view),
-    path('login/', LoginView.as_view()),
-    path('logout/', logout_view),
-    path('signup/', signup_view),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', logout_view, name='logout'),
+    path('signup/', signup_view, name='signup'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += profile_page_urls
