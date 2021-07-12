@@ -9,7 +9,11 @@
     <title></title>
     <nav>
       <a href="/">HOME</a>
+      {% if user.id %}
       <a href="/profile/{{user.id}}">PROFILE</a>
+      {% else %}
+      <a href="/">PROFILE</a>
+      {% endif %}
       <a href="/newpost/">NEW-POST</a>
       <a href="/login/">Log In</a>
       <a href="/logout/">Log Out</a>
