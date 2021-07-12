@@ -1,3 +1,4 @@
+{% include 'nav.html' %}
 <h1>Post Detail</h1>
 {% include 'display_posts.html' %}
 <h3>Comments</h3>
@@ -7,4 +8,5 @@
 <p>Text: {{ foo.text }}</p>
 <p>Post Date: {{ foo.post_date }}</p>
 <hr />
+<h2>Add a Comment</h2>
 {% endfor %} {% include 'generic_form.html' %}

@@ -1,0 +1,6 @@
+{% if request.get_full_path == '/signup/' %}
+<h2>Sign Up</h2>
+{% elif request.get_full_path == '/login/' %}
+<h2>Log-In</h2>
+{% endif %}
+<a href="/signup/">Dont have an account? Click here to create an account</a>
