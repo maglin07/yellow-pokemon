@@ -2,7 +2,7 @@ from django.shortcuts import render, reverse, redirect, HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from .forms import PostForm
-from .models import Post
+from .models import Post, Comment
 
 
 # Create your views here.
@@ -11,7 +11,8 @@ class PostDetailView(LoginRequiredMixin, View):
 
     def get(self, request, post_id):
         posts = Post.objects.filter(id=post_id)
-        return render(request, 'post_detail.html', {'posts': posts})
+        comments = Comment.objects.filter(post_id=post_id)
+        return render(request, 'post_detail.html', {'posts': posts, 'comments': comments})
 
 
 class NewPostView(LoginRequiredMixin, View):
