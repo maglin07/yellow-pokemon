@@ -1,0 +1,33 @@
+{% extends 'index.html' %} {% block content %}
+
+<hr />
+profile info
+<div>First Name: {{profile.first_name}}</div>
+<div>Last Name: {{profile.last_name}}</div>
+<div>username: {{profile.username}}</div>
+<div>avatarimage: {{profile.avatar_image}}</div>
+
+<hr />
+{% for foo in posts%}
+
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="..." class="card-img" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">title: {{foo.title}}</h5>
+          <p class="card-text">description: {{foo.description}}</p>
+          <p class="card-text">likes: {{foo.likes}}</p>
+          <p class="card-text">dislikes: {{foo.dislikes}}</p>
+          <p class="card-text"><small class="text-muted">post-date:{{foo.post_date}}</small></p>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+{% endfor %}
+
+
+{% endblock%}

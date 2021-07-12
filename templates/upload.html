@@ -1,37 +1,11 @@
-<style>
-    body{background-color: blue}
-    .marg{
-        background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);;
-        width: 300px;
-        height: 500px;
-        padding: 20px 10px 10px 10px;
-        text-align: left;
-        margin-top: 100px;
-        box-shadow: 5px 5px 5px #999;
-    }
-    .photo{
-        position:absolute;
-        border: 1px gray solid;
-        border-radius: 50%;
-        width:100px;
-        height:100px;
-        margin-top: -175px;
-        margin-left: 475px;
-    }
-</style>
-
-
-
 <center>
-<form  class='marg' method="post" enctype="multipart/form-data">
-    <h3 style = 'margin-left: 80px'>Upload a Photo</h3>
-    {% csrf_token %}
-     {{ post_form.as_p }}
-     {{image_form.as_p}}
+  <form class="marg" method="post" enctype="multipart/form-data">
+    <h3>Upload a Photo</h3>
+    {% csrf_token %} {{ post_form.as_p }} {{image_form.as_p}}
     <button type="submit">Upload</button>
     <!-- <input style='margin-left:110px' type = "submit", value"Submit"><br><br>   -->
   </form>
-  
+
   <!-- {% if image %}
     <h3>Succesfully uploaded : {{image.title}}</h3>
     <div class = 'photo'>
@@ -41,4 +15,3 @@
     <h3>Sorry There was a problem Try Again.</h3>
   {% endif %} -->
 </center>
-

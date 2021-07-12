@@ -17,12 +17,20 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from frontend import views 
-
+from frontend import views
+from profile_page.urls import urlpatterns as profile_page_urls
+from user_interaction.urls import urlpatterns as user_interaction_urls
+from authentication.views import signup_view, LoginView, logout_view
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name="homepage"),
-    path('uploads/', views.image_upload_view)
+    path('', views.index, name='homepage'),
+    path('uploads/', views.image_upload_view),
+    path('login/', LoginView.as_view()),
+    path('logout/', logout_view),
+    path('signup/', signup_view),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += profile_page_urls
+urlpatterns += user_interaction_urls

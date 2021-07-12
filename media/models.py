@@ -10,6 +10,5 @@ class Image(models.Model):
     image = models.ImageField(upload_to='images/', null=True, blank=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
-
     def __str__(self):
         return f'{self.author} - {self.id}'
