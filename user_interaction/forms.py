@@ -5,11 +5,6 @@ from user_interaction.models import Post
 
 
 class PostForm(forms.Form):
-    author = forms.ModelChoiceField(queryset=Author.objects.all())
     title = forms.CharField(max_length=50)
-    description = forms.CharField(widget=forms.Textarea)
+    description = forms.CharField(widget=forms.Textarea, max_length=250)
     image = forms.ImageField()
-
-
-# class ImageForm(forms.Form):
-#     image = forms.FileField()

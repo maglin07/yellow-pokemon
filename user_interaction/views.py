@@ -9,9 +9,9 @@ from .models import Post
 class PostDetailView(LoginRequiredMixin, View):
     login_url = '/login/'
 
-    def get(self, request, id):
-        post = Post.objects.filter(id=id).first()
-        return render(request, 'profile.html', {'post': post})
+    def get(self, request, post_id):
+        posts = Post.objects.filter(id=post_id)
+        return render(request, 'post_detail.html', {'posts': posts})
 
 
 class NewPostView(LoginRequiredMixin, View):
@@ -24,16 +24,14 @@ class NewPostView(LoginRequiredMixin, View):
 
     def post(self, request):
         if request.method == "POST":
-            form = PostForm(request.POST)
+            form = PostForm(request.POST, request.FILES)
             if form.is_valid():
                 data = form.cleaned_data
                 post = Post.objects.create(
-                    post_date=data.get('post_date'),
                     title=data.get('title'),
                     description=data.get('description'),
-                    author=data.get('author'),
-                    # author=request.user,
-                    likes=data.get('likes'),
-                    dislikes=data.get('dislikes'),
+                    # author=data.get('author'),
+                    author=request.user,
+                    image=data['image']
                 )
                 return render(request, 'profile.html', {'form': form})
