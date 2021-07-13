@@ -7,11 +7,12 @@
   </a>
   <h5>title: {{foo.title}}</h5>
   <p>description: {{foo.description}}</p>
-  <p>likes: {{foo.likes}}</p>
-  <p>dislikes: {{foo.dislikes}}</p>
+  <a href="/post/{{foo.id}}/likes/">{{ foo.likes}} Likes<a>
+  <a href="/post/{{foo.id}}/dislikes/">{{ foo.dislikes}} Dislikes</a>
   <p>post-date:{{foo.post_date}}</p>
   {% if request.user == foo.author %}
-  <a href="/post/{{foo.id}}/delete/">Delete Post</a>
+  <div><a href="/post/{{foo.id}}/delete/">Delete Post</a></div> 
+
   {% endif %}
 </div>
 <hr />

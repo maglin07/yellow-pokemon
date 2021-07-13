@@ -7,8 +7,9 @@ from user_interaction.models import Post
 
 @login_required
 def index(request):
+    posts = Post.objects.all().order_by("-post_date")
 
-    return render(request, 'index.html')
+    return render(request, 'index.html', {'posts': posts})
 
 @login_required
 def image_upload_view(request):
@@ -29,3 +30,17 @@ def image_upload_view(request):
     else:
         post_form = PostForm()
     return render(request, 'upload.html', {'post_form': post_form})
+
+
+def likes_view(request, id):
+    post = Post.objects.get(id=id)
+    post.likes += 1
+    post.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', ""))
+
+
+def dislikes_view(request, id):
+    post = Post.objects.get(id=id)
+    post.dislikes += 1
+    post.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', ""))
