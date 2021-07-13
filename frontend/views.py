@@ -29,3 +29,17 @@ def image_upload_view(request):
     else:
         post_form = PostForm()
     return render(request, 'upload.html', {'post_form': post_form})
+
+
+def likes_view(request, id):
+    post = Post.objects.get(id=id)
+    post.likes += 1
+    post.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', ""))
+
+
+def dislikes_view(request, id):
+    post = Post.objects.get(id=id)
+    post.dislikes += 1
+    post.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', ""))
