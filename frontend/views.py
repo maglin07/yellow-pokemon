@@ -7,8 +7,9 @@ from user_interaction.models import Post
 
 @login_required
 def index(request):
+    posts = Post.objects.all().order_by("-post_date")
 
-    return render(request, 'index.html')
+    return render(request, 'index.html', {'posts': posts})
 
 @login_required
 def image_upload_view(request):

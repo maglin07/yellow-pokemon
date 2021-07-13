@@ -17,7 +17,7 @@ class ProfileView(LoginRequiredMixin, View):
     def get(self, request, user_id: int):
         template = 'profile.html'
         profile_user = Author.objects.get(id=user_id)
-        posts = Post.objects.filter(author=profile_user)
+        posts = Post.objects.filter(author=profile_user).order_by("-post_date")
         return render(request, template, {'profile': profile_user, 'posts': posts})
 
 
