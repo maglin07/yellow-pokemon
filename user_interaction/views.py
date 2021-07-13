@@ -1,8 +1,9 @@
-from django.shortcuts import render, reverse, redirect, HttpResponseRedirect
+from django.shortcuts import render, reverse, redirect, HttpResponseRedirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from .forms import PostForm, CommentForm
 from .models import Post, Comment
+from django.http import HttpResponseForbidden
 
 
 # Create your views here.
@@ -66,3 +67,21 @@ class CommentDeleteView(LoginRequiredMixin, View):
         comment = Comment.objects.get(id=comment_id)
         comment.delete()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', ""))
+
+
+def CommentEditView(request, comment_id):
+    comment = Comment.objects.get(id=comment_id)
+    post_id = comment.post.id
+
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            comment.text = data['text']
+            comment.save()
+            return HttpResponseRedirect(reverse('post_detail', args=(post_id,)))
+            
+    form = CommentForm(initial={
+        'text' : comment.text
+    })
+    return render(request, 'post_detail.html', {'form': form})
