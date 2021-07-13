@@ -7,6 +7,10 @@
 <p>Author: {{ foo.author }}</p>
 <p>Text: {{ foo.text }}</p>
 <p>Post Date: {{ foo.post_date }}</p>
+{% if request.user == foo.post.author %}
+<a href="/comment/{{foo.id}}/delete/">Delete Comment</a>
+{% endif %}
 <hr />
+{% endfor %}
 <h2>Add a Comment</h2>
-{% endfor %} {% include 'generic_form.html' %}
+{% include 'generic_form.html' %}

@@ -47,4 +47,22 @@ class NewPostView(LoginRequiredMixin, View):
                     author=request.user,
                     image=data['image']
                 )
-                return render(request, 'profile.html', {'form': form})
+                return HttpResponseRedirect(reverse('homepage'))
+
+
+class PostDeleteView(LoginRequiredMixin, View):
+    login_url = '/login/'
+
+    def get(self, request, post_id):
+        post = Post.objects.get(id=post_id)
+        post.delete()
+        return HttpResponseRedirect(reverse('homepage'))
+
+
+class CommentDeleteView(LoginRequiredMixin, View):
+    login_url = '/login/'
+
+    def get(self, request, comment_id):
+        comment = Comment.objects.get(id=comment_id)
+        comment.delete()
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', ""))

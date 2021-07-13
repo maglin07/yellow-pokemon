@@ -1,6 +1,7 @@
 {% load static %} {% for foo in posts %}
 
 <div>
+  <p>Author: <a href="/profile/{{foo.author.id}}/">{{foo.author}}</a></p>
   <a href="/post/{{foo.id}}/">
     <img src="{% static foo.image %}" class="card-img" alt="Post Image" />
   </a>
@@ -9,6 +10,9 @@
   <p>likes: {{foo.likes}}</p>
   <p>dislikes: {{foo.dislikes}}</p>
   <p>post-date:{{foo.post_date}}</p>
+  {% if request.user == foo.author %}
+  <a href="/post/{{foo.id}}/delete/">Delete Post</a>
+  {% endif %}
 </div>
 <hr />
 {% endfor %}
