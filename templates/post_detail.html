@@ -9,6 +9,7 @@
 <p>Post Date: {{ foo.post_date }}</p>
 {% if request.user == foo.post.author %}
 <a href="/comment/{{foo.id}}/delete/">Delete Comment</a>
+<a href='/comment/{{foo.id}}/edit/'>Edit Comment</a>
 {% endif %}
 <hr />
 {% endfor %}
