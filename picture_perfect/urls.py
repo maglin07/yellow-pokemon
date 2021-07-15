@@ -20,12 +20,13 @@ from django.conf.urls.static import static
 from frontend import views
 from profile_page.urls import urlpatterns as profile_page_urls
 from user_interaction.urls import urlpatterns as user_interaction_urls
-from authentication.views import signup_view, LoginView, logout_view
+from authentication.views import check, signup_view, LoginView, logout_view
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='homepage'),
+    path('check/', check, name='check'),
     path('uploads/', views.image_upload_view),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', logout_view, name='logout'),
@@ -34,3 +35,7 @@ urlpatterns = [
 
 urlpatterns += profile_page_urls
 urlpatterns += user_interaction_urls
+
+
+handler404 = "authentication.views.error_404_view"
+handler500 = "authentication.views.error_500_view"
