@@ -11,8 +11,8 @@
   <a href="/post/{{foo.id}}/dislikes/">{{ foo.dislikes}} Dislikes</a>
   <p>post-date:{{foo.post_date}}</p>
   {% if request.user == foo.author %}
-  <div><a href="/post/{{foo.id}}/delete/">Delete Post</a></div> 
-
+  <div><a href="/post/{{foo.id}}/delete/">Delete Post</a></div>
+  <div><a href="/post/{{foo.id}}/edit/">Edit Post</a></div>
   {% endif %}
 </div>
 <hr />
