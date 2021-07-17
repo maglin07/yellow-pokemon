@@ -48,3 +48,15 @@ class LoginView(TemplateView):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("homepage"))
+
+
+def error_404_view(request, exception):
+    return render(request, '404error.html')
+
+
+def error_500_view(request):
+    return render(request, '500error.html')
+
+
+def check(request):
+    ...
