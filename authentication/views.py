@@ -60,3 +60,18 @@ def error_500_view(request):
 
 def check(request):
     ...
+
+
+class FollowView(TemplateView):
+    def get(self, request, follow_id):
+        signed_in_user = Author.objects.filter(username=request.user.username).first()
+        follow = Author.objects.filter(id=follow_id).first()
+        signed_in_user.following.add(follow)
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+class UnfollowView(TemplateView):
+    def get(self, request, unfollow_id):
+        signed_in_user = request.user
+        unfollow = Author.objects.filter(id=unfollow_id).first()
+        signed_in_user.following.remove(unfollow)
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))

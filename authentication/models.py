@@ -8,6 +8,7 @@ from django.contrib.auth.models import AbstractUser
 class Author(AbstractUser):
     avatar_image = models.ImageField(upload_to='images/', null=True, blank=True)
     username = models.CharField(max_length=30, unique=True)
+    following = models.ManyToManyField("self", symmetrical=False)
 
     def __str__(self):
         return self.username
