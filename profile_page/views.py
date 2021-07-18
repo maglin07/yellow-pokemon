@@ -18,7 +18,8 @@ class ProfileView(LoginRequiredMixin, View):
         template = 'profile.html'
         profile_user = Author.objects.get(id=user_id)
         posts = Post.objects.filter(author=profile_user).order_by("-post_date")
-        return render(request, template, {'profile': profile_user, 'posts': posts})
+        count = profile_user.following.count()
+        return render(request, template, {'profile': profile_user, 'posts': posts, 'count': count})
 
 
 @login_required
