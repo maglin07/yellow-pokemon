@@ -1,4 +1,4 @@
-from django.shortcuts import render, reverse, redirect, HttpResponseRedirect, get_object_or_404
+from django.shortcuts import render, reverse, redirect, HttpResponseRedirect, get_object_or_404, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from .forms import PostForm, CommentForm
@@ -85,3 +85,23 @@ def CommentEditView(request, comment_id):
         'text' : comment.text
     })
     return render(request, 'post_detail.html', {'form': form})
+
+
+def EditPostView(request, post_id):
+    post = Post.objects.get(id=post_id)
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES)
+        post.title = request.POST['title']
+        post.description = request.POST['description']
+        if 'image' in request.FILES:
+            post.image = request.FILES['image']
+        post.save()
+        form = PostForm()
+        return HttpResponseRedirect(reverse('post_detail', args=(post_id,)))
+    else:
+        form = PostForm(initial={
+            'title': post.title,
+            'description': post.description,
+            'image': post.image,
+        })
+    return render(request, "generic_form.html", {'form': form})
