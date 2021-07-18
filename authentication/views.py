@@ -25,7 +25,7 @@ def signup_view(request):
         else:
             return HttpResponse(form.errors.values())
     form = SignUpForm()
-    return render(request, 'generic_form.html', {"form": form})
+    return render(request, 'signup_form.html', {"form": form})
 
 
 class LoginView(TemplateView):
