@@ -69,6 +69,7 @@ class FollowView(TemplateView):
         signed_in_user.following.add(follow)
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
+
 class UnfollowView(TemplateView):
     def get(self, request, unfollow_id):
         signed_in_user = request.user
