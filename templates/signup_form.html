@@ -16,9 +16,9 @@
     <title>Picture Perfect</title>
   </head>
   <body>
-    {% include 'nav.html' %}
     <div class="container">
-      <h1 class="text-center">Sign Up</h1>
+      {% include 'nav.html' %}
+      <h1 class="text-center">{{ header }}</h1>
       <form enctype="multipart/form-data" method="post">
         {% csrf_token %} {{ form.non_field_errors }}
         <div class="fieldWrapper form-group">
