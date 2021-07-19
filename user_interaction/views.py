@@ -11,8 +11,8 @@ class PostDetailView(LoginRequiredMixin, View):
     login_url = '/login/'
 
     def get(self, request, post_id):
-        header = "Post Detail"
         posts = Post.objects.filter(id=post_id)
+        header = posts[0].title
         comments = Comment.objects.filter(post_id=post_id)
         form = CommentForm()
         return render(request, 'post_detail.html', {'posts': posts, 'comments': comments, 'form': form, 'header': header})
