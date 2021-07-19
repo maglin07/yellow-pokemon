@@ -7,29 +7,10 @@ from user_interaction.models import Post
 
 @login_required
 def index(request):
+    header = "Picture Perfect"
     posts = Post.objects.all().order_by("-post_date")
 
-    return render(request, 'index.html', {'posts': posts})
-
-@login_required
-def image_upload_view(request):
-    if request.method == 'POST':
-        post_form = PostForm(request.POST, request.FILES)
-
-        if post_form.is_valid():
-            post_data = post_form.cleaned_data
-            new_post = Post.objects.create(
-                author=post_data['author'],
-                title=post_data['title'],
-                description=post_data['description'],
-                image=post_data['image']
-            )
-            return render(request, 'upload.html', {'post_form': post_form})
-        return HttpResponseRedirect(request.GET.get
-                                    ('next', reverse('homepage')))        
-    else:
-        post_form = PostForm()
-    return render(request, 'upload.html', {'post_form': post_form})
+    return render(request, 'index.html', {'posts': posts, 'header': header})
 
 
 def likes_view(request, id):

@@ -9,6 +9,7 @@ from django.views.generic import TemplateView
 # Create your views here.
 
 def signup_view(request):
+    header = "Sign Up"
     if request.method == "POST":
         form = SignUpForm(request.POST, request.FILES)
         if form.is_valid():
@@ -25,14 +26,15 @@ def signup_view(request):
         else:
             return HttpResponse(form.errors.values())
     form = SignUpForm()
-    return render(request, 'signup_form.html', {"form": form})
+    return render(request, 'signup_form.html', {"form": form, 'header': header})
 
 
 class LoginView(TemplateView):
-  
+    header = "Login"
+    
     def get(self, request):
         form = LoginForm()
-        return render(request, "login_form.html", {"form": form})
+        return render(request, "login_form.html", {"form": form, 'header': self.header})
 
     def post(self, request):
         form = LoginForm(request.POST)
@@ -43,7 +45,7 @@ class LoginView(TemplateView):
                 login(request, user)
                 return HttpResponseRedirect(request.GET.get('next', reverse('homepage')))
             
-            return render(request, "login_form.html", {"form": form})
+            return render(request, "login_form.html", {"form": form, 'header': self.header})
 
 def logout_view(request):
     logout(request)

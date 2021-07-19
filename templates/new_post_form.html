@@ -18,7 +18,7 @@
   <body>
     <div class="container">
       {% include 'nav.html' %}
-      <h1 class="text-center">Create a Post</h1>
+      <h1 class="text-center">{{ header }}</h1>
       <form enctype="multipart/form-data" method="post">
         {% csrf_token %} {{ form.non_field_errors }}
         <div class="fieldWrapper form-group">

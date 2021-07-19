@@ -1,19 +1,50 @@
-{% load static %} {% for foo in posts %}
+{% load static %}
+<div class="container">
+  {% for foo in posts %}
 
-<div>
-  <p>Author: <a href="/profile/{{foo.author.id}}/">{{foo.author}}</a></p>
-  <a href="/post/{{foo.id}}/">
-    <img src="{% static foo.image %}" class="card-img" alt="Post Image" />
-  </a>
-  <h5>title: {{foo.title}}</h5>
-  <p>description: {{foo.description}}</p>
-  <a href="/post/{{foo.id}}/likes/">{{ foo.likes}} Likes<a>
-  <a href="/post/{{foo.id}}/dislikes/">{{ foo.dislikes}} Dislikes</a>
-  <p>post-date:{{foo.post_date}}</p>
-  {% if request.user == foo.author %}
-  <div><a href="/post/{{foo.id}}/delete/">Delete Post</a></div>
-  <div><a href="/post/{{foo.id}}/edit/">Edit Post</a></div>
-  {% endif %}
+  <div class="card my-4 mx-auto" style="width: 35rem">
+    <div class="card-header bg-white">
+      <a href="/profile/{{foo.author.id}}/">
+        <img
+          src="{% static foo.author.avatar_image %}"
+          class="img-thumbnail rounded-circle"
+          alt="Author Thumbnail"
+          style="width: 3rem"
+      /></a>
+      <span class="my-auto mx-2">
+        <a href="/profile/{{foo.author.id}}/" class="text-dark"
+          >{{foo.author}}</a
+        >
+      </span>
+    </div>
+    <a href="/post/{{foo.id}}"
+      ><img src="{% static foo.image %}" class="card-img-top" alt="Post Image"
+    /></a>
+
+    <div class="card-body">
+      <h5>{{foo.title}}</h5>
+      <p class="m-0">
+        <a href="/profile/{{foo.author.id}}/" class="text-dark me-2"
+          >{{foo.author}}</a
+        >
+        {{foo.description}}
+      </p>
+      <p class="text-muted m-0">{{ foo.post_date|timesince }} ago</p>
+    </div>
+    <div class="card-footer bg-white">
+      <a class="text-dark" href="/post/{{foo.id}}/likes/"
+        ><i class="far fa-thumbs-up"></i
+      ></a>
+      <span class="me-2"> {{foo.likes }}</span>
+      <a href="/post/{{foo.id}}/dislikes/" class="text-dark"
+        ><i class="far fa-thumbs-down"></i
+      ></a>
+      <span class="me-2">{{foo.dislikes }}</span>
+      {% if request.user == foo.author %}
+      <a href="/post/{{foo.id}}/edit/" class="text-dark me-2">Edit</a>
+      <a href="/post/{{foo.id}}/delete/" class="text-dark">Delete</a>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
 </div>
-<hr />
-{% endfor %}
