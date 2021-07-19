@@ -33,7 +33,7 @@ class NewPostView(LoginRequiredMixin, View):
     login_url = '/login/'
 
     def get(self, request):
-        template = 'generic_form.html'
+        template = 'new_post_form.html'
         form = PostForm()
         return render(request, template, {"form": form})
 
