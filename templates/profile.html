@@ -1,14 +1,10 @@
-{% extends 'index.html' %} {% block content %} {% load static %}
-<hr />
-profile info
+{% block content %} {% load static %} profile info
 <div>Following: {{count}}</div>
 
 <div>First Name: {{profile.first_name}}</div>
 <div>Last Name: {{profile.last_name}}</div>
 <div>username: {{profile.username}}</div>
-{% if request.user.id == profile.id %}
-
-{% else %}
+{% if request.user.id == profile.id %} {% else %}
 <p><a href="/unfollowing/{{profile.id}}/" type="button">Unfollow</a></p>
 <p><a href="/following/{{profile.id}}/" type="button">Follow</a></p>
 {% endif %}

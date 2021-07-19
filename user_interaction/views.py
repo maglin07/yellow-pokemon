@@ -12,9 +12,10 @@ class PostDetailView(LoginRequiredMixin, View):
 
     def get(self, request, post_id):
         posts = Post.objects.filter(id=post_id)
+        header = posts[0].title
         comments = Comment.objects.filter(post_id=post_id)
         form = CommentForm()
-        return render(request, 'post_detail.html', {'posts': posts, 'comments': comments, 'form': form})
+        return render(request, 'post_detail.html', {'posts': posts, 'comments': comments, 'form': form, 'header': header})
     
     def post(self, request, post_id):
         form = CommentForm(request.POST)
@@ -33,9 +34,10 @@ class NewPostView(LoginRequiredMixin, View):
     login_url = '/login/'
 
     def get(self, request):
+        header = "Create a Post"
         template = 'new_post_form.html'
         form = PostForm()
-        return render(request, template, {"form": form})
+        return render(request, template, {"form": form, 'header': header})
 
     def post(self, request):
         if request.method == "POST":
@@ -70,6 +72,7 @@ class CommentDeleteView(LoginRequiredMixin, View):
 
 
 def CommentEditView(request, comment_id):
+    header = "Edit Comment"
     comment = Comment.objects.get(id=comment_id)
     post_id = comment.post.id
 
@@ -84,10 +87,11 @@ def CommentEditView(request, comment_id):
     form = CommentForm(initial={
         'text' : comment.text
     })
-    return render(request, 'post_detail.html', {'form': form})
+    return render(request, 'post_detail.html', {'form': form, 'header': header})
 
 
 def EditPostView(request, post_id):
+    header = "Edit Post"
     post = Post.objects.get(id=post_id)
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
@@ -104,4 +108,4 @@ def EditPostView(request, post_id):
             'description': post.description,
             'image': post.image,
         })
-    return render(request, "generic_form.html", {'form': form})
+    return render(request, "new_post_form.html", {'form': form, 'header': header})
