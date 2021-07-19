@@ -18,74 +18,50 @@
   <body>
     {% include 'nav.html' %}
     <div class="container">
-      <h1 class="text-center">Sign Up</h1>
+      <h1 class="text-center">Create a Post</h1>
       <form enctype="multipart/form-data" method="post">
         {% csrf_token %} {{ form.non_field_errors }}
         <div class="fieldWrapper form-group">
-          {{ form.first_name.errors }}
-          <label for="first_name">First name</label>
-          <input
-            type="text"
-            name="first_name"
-            maxlength="150"
-            id="first_name"
-            class="form-control"
-            placeholder="First Name"
-          />
-        </div>
-        <div class="fieldWrapper form-group">
-          {{ form.last_name.errors }}
-          <label for="last_name">Last name</label>
-          <input
-            type="text"
-            name="last_name"
-            maxlength="150"
-            id="last_name"
-            class="form-control"
-            placeholder="Last Name"
-          />
-        </div>
-        <div class="fieldWrapper form-group">
-          {{ form.username.errors }}
-          <label for="username">Username</label>
+          {{ form.title.errors }}
+          <label for="title">Title</label>
           <input
             required
             type="text"
-            name="username"
-            maxlength="30"
-            id="username"
+            name="title"
+            maxlength="50"
+            id="title"
             class="form-control"
-            placeholder="Username"
+            placeholder="Title"
           />
         </div>
         <div class="fieldWrapper form-group">
-          {{ form.password.errors }}
-          <label for="password">Password</label>
-          <input
+          {{ form.description.errors }}
+          <label for="description">Description</label>
+          <textarea
             required
-            type="password"
-            name="password"
-            maxlength="128"
-            id="password"
+            rows="4"
+            name="description"
+            maxlength="250"
+            id="description"
             class="form-control"
-            placeholder="Password"
-          />
+            placeholder="Description"
+          ></textarea>
         </div>
         <div class="fieldWrapper form-group">
-          {{ form.avatar_image.errors }}
-          <label for="avatar_image">Avatar image</label>
+          {{ form.image.errors }}
+          <label for="image">Image</label>
           <input
             type="file"
-            name="avatar_image"
+            name="image"
             accept="image/*"
-            id="avatar_image"
+            id="image"
             class="form-control"
           />
         </div>
         <div class="d-grid">
           <input
             type="submit"
-            value="Sign Up"
+            value="Submit"
             class="btn btn-primary btn-lg my-2"
           />
         </div>

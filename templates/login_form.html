@@ -18,33 +18,9 @@
   <body>
     {% include 'nav.html' %}
     <div class="container">
-      <h1 class="text-center">Sign Up</h1>
+      <h1 class="text-center">Login</h1>
       <form enctype="multipart/form-data" method="post">
         {% csrf_token %} {{ form.non_field_errors }}
-        <div class="fieldWrapper form-group">
-          {{ form.first_name.errors }}
-          <label for="first_name">First name</label>
-          <input
-            type="text"
-            name="first_name"
-            maxlength="150"
-            id="first_name"
-            class="form-control"
-            placeholder="First Name"
-          />
-        </div>
-        <div class="fieldWrapper form-group">
-          {{ form.last_name.errors }}
-          <label for="last_name">Last name</label>
-          <input
-            type="text"
-            name="last_name"
-            maxlength="150"
-            id="last_name"
-            class="form-control"
-            placeholder="Last Name"
-          />
-        </div>
         <div class="fieldWrapper form-group">
           {{ form.username.errors }}
           <label for="username">Username</label>
@@ -71,27 +47,18 @@
             placeholder="Password"
           />
         </div>
-        <div class="fieldWrapper form-group">
-          {{ form.avatar_image.errors }}
-          <label for="avatar_image">Avatar image</label>
-          <input
-            type="file"
-            name="avatar_image"
-            accept="image/*"
-            id="avatar_image"
-            class="form-control"
-          />
-        </div>
         <div class="d-grid">
           <input
             type="submit"
-            value="Sign Up"
+            value="Login"
             class="btn btn-primary btn-lg my-2"
           />
         </div>
+        <p class="text-center">
+          Don't have an account? <a href="/signup/">Sign Up</a>
+        </p>
       </form>
     </div>
-
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

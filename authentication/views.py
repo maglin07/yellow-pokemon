@@ -32,7 +32,7 @@ class LoginView(TemplateView):
   
     def get(self, request):
         form = LoginForm()
-        return render(request, "generic_form.html", {"form": form})
+        return render(request, "login_form.html", {"form": form})
 
     def post(self, request):
         form = LoginForm(request.POST)
@@ -43,7 +43,7 @@ class LoginView(TemplateView):
                 login(request, user)
                 return HttpResponseRedirect(request.GET.get('next', reverse('homepage')))
             
-            return render(request, "generic_form.html", {"form": form})
+            return render(request, "login_form.html", {"form": form})
 
 def logout_view(request):
     logout(request)
