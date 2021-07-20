@@ -28,20 +28,31 @@
   <body>
     <div class="container">
       {% include 'nav.html' %}
+      <div class="profile_info mx-auto" style="width: 35rem">
+        <h1 class="text-center display-6">{{ header }}</h1>
+        <div>
+          <img
+            src="{% static profile.avatar_image %}"
+            class="img-thumbnail rounded-circle"
+            style="width: 12rem; height: 12rem; object-fit: cover"
+          />
+        </div>
+        <div>Following: {{count}}</div>
 
-      <h1 class="text-center">{{ header }}</h1>
-      <div>Following: {{count}}</div>
-
-<div>First Name: {{profile.first_name}}</div>
-<div>Last Name: {{profile.last_name}}</div>
-<div>username: {{profile.username}}</div>
-{% if request.user.id == profile.id %} {% else %}
-<p><a href="/unfollowing/{{profile.id}}/" type="button">Unfollow</a></p>
-<p><a href="/following/{{profile.id}}/" type="button">Follow</a></p>
-{% endif %}
-<div>
-  avatarimage: <img src="{% static profile.avatar_image %}" width="100px" />
-</div>
+        <div>First Name: {{profile.first_name}}</div>
+        <div>Last Name: {{profile.last_name}}</div>
+        <div>username: {{profile.username}}</div>
+        {% if request.user.id == profile.id %}
+        <p>
+          <a href="/profile/{{profile.id}}/update/" type="button"
+            >Edit Profile</a
+          >
+        </p>
+        {% else %}
+        <p><a href="/unfollowing/{{profile.id}}/" type="button">Unfollow</a></p>
+        <p><a href="/following/{{profile.id}}/" type="button">Follow</a></p>
+        {% endif %}
+      </div>
 
       {% include 'display_posts.html' %}
     </div>
