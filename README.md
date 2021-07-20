@@ -21,7 +21,7 @@
       Edit Comment
       Following / Unfollowing
       
-# Continue Working on Features:
+# Upcoming Features:
       Notifications
       Search (User/Photo)
       Upload Video
