@@ -7,3 +7,8 @@ def Terms(request):
 def FAQ(request): 
     header ="Frequently Asked Questions"
     return render(request, 'FAQ.html',{'header': header})
+
+def help(request): 
+    header ="help"
+    return render(request, 'help.html',{'header': header})  
+

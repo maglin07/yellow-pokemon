@@ -1,0 +1,76 @@
+<h1>{{header}}</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    {% load static %}
+    <title>Picture Perfect</title>
+  </head>
+  <body>
+    <div class="container">
+      {% include 'nav.html' %}
+      <div class="justify-center">P</div>  
+      <h1 class="box">Picture Perfect</h1>
+      <form enctype="multipart/form-data" method="post">
+        {% csrf_token %} {{ form.non_field_errors }}
+        <div class="fieldWrapper form-group">
+          {{ form.first_name.errors }}
+
+
+
+<h1>{{header}}</h1>
+
+
+<style>
+   
+    .justify-center{
+      background-color: blue;
+      margin-left: 270px;
+      padding-left: 15px;
+      font-family: Parchment;
+      color: white;
+      /* padding-bottom: 5px; */
+      font-size: 42px;
+      font-weight: 600
+    }
+    .box{
+      box-shadow: 1px 1px 1px 1px lightgray;
+
+      text-align: center;
+      font-size: 32px;
+      font-family: script mt;
+      position: absolute;
+      margin-top: -55px;
+      margin-left: 335px;
+      height: 47Px;
+      width: 250px;
+      background-color: white;
+    }
+    center{
+      background-color: white;       
+      width: 300px;
+      height: 300px;
+      border: 5px 5px 5px 5px red;
+      padding: 30px 20px 20px 20px;
+      text-align: left;
+      margin-left: 50%;
+      box-shadow: 5px 5px 5px #999;
+    }
+    .login{
+      margin-left: 100px;
+    }
+    .agent{
+      margin-left: 200px;
+    }
+  </style>

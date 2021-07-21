@@ -36,6 +36,7 @@ urlpatterns = [
     path('unfollowing/<int:unfollow_id>/', UnfollowView.as_view()),
     path('simple_chatbot/', SimpleChatbot.as_view()),
     path('signup/FAQ/', FAQ),
+    path('signup/help/', FAQ),
     path('terms/', Terms),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
