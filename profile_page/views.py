@@ -19,22 +19,37 @@ class ProfileView(LoginRequiredMixin, View):
         profile_user = Author.objects.get(id=user_id)
         header = profile_user.username
         posts = Post.objects.filter(author=profile_user).order_by("-post_date")
-        count = profile_user.following.count()
-        return render(request, template, {'profile': profile_user, 'posts': posts, 'count': count, 'header': header})
+        post_count = posts.count()
+        follower_count = profile_user.author_set.all().count()
+        following_count = profile_user.following.count()
+        following_profile_user = False
+        if profile_user in request.user.following.all():
+            following_profile_user = True
+        return render(request, template, {
+            'profile': profile_user,
+            'posts': posts,
+            'post_count': post_count,
+            'follower_count': follower_count,
+            'following_count': following_count,
+            'header': header,
+            'following_profile_user': following_profile_user,
+        })
 
 
 @login_required
 def ProfileUpdateView(request, user_id):
+    header = "Edit Profile"
     author = Author.objects.get(id=user_id)
 
     if request.method == 'POST':
-        form = AuthorForm(request.POST)
+        form = AuthorForm(request.POST, request.FILES)
         if form.is_valid():
             data = form.cleaned_data
             author.username = data['username']
             author.email = data['email']
             author.first_name = data['first_name']
             author.last_name = data['last_name']
+            author.avatar_image = data['avatar_image']
             author.save()
         return HttpResponseRedirect(reverse("profile", args=(user_id,)))
 
@@ -42,6 +57,7 @@ def ProfileUpdateView(request, user_id):
         'username': author.username,
         'email': author.email,
         'first_name': author.first_name,
-        'last_name': author.last_name
+        'last_name': author.last_name,
+        'avatar_image': author.avatar_image,
     })
-    return render(request, 'generic_form.html', {'form': form})
+    return render(request, 'signup_form.html', {'form': form, 'header': header})
