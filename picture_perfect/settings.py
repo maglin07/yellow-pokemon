@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     'profile_page',
     'user_interaction',
     'media',
+    'simple_chatbot',
+    'rest_framework',
+    
 ]
 
 MIDDLEWARE = [
@@ -140,3 +143,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "authentication.Author"
+
+SIMPLE_CHATBOT = {
+    'responses':(
+        ('media.responses.GreetingResponse', 'GreetingResponse'),
+        ('media.responses.GoodbyeResponse', 'GoodbyeResponse'),
+        ('media.responses.AnswerResponse', 'AnswerResponse'),
+    ),
+}

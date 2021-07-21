@@ -28,8 +28,8 @@
   <body>
     <div class="container">
       {% include 'nav.html' %}
-
-      <h1 class="text-center">{{ header }}</h1>
+      <div class="justify-center">P</div> 
+      <h1 class="box">{{ header }}</h1>
 
       {% include 'display_posts.html' %}
     </div>
@@ -39,5 +39,56 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    
+    <style>
+      body{background-image:linear-gradient(to bottom, white, rgb(0, 195, 255),blue);}
+      .justify-center{
+        background-color: blue;
+        margin-left: 270px;
+        padding-left: 15px;
+        font-family: Parchment;
+        color: white;
+        /* padding-bottom: 5px; */
+        font-size: 42px;
+        font-weight: 600
+      }
+      .box{
+        box-shadow: 1px 1px 1px 1px lightgray;
+
+        text-align: center;
+        font-size: 32px;
+        font-family: script mt;
+        position: absolute;
+        margin-top: -55px;
+        margin-left: 335px;
+        height: 47Px;
+        width: 250px;
+        background-color: white;
+      }
+      center{
+        background-color: white;       
+        width: 300px;
+        height: 300px;
+        border: 5px 5px 5px 5px red;
+        padding: 30px 20px 20px 20px;
+        text-align: left;
+        margin-left: 50%;
+        box-shadow: 5px 5px 5px #999;
+      }
+      .login{
+        margin-left: 100px;
+      }
+      .agent{
+        margin-left: 200px;
+      }
+      .agent1{
+        margin-left: 20px;
+      }
+      .agent2{
+        margin-left: 20px;
+      }
+    </style>
+
+
   </body>
 </html>

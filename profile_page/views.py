@@ -17,10 +17,11 @@ class ProfileView(LoginRequiredMixin, View):
     def get(self, request, user_id: int):
         template = 'profile.html'
         profile_user = Author.objects.get(id=user_id)
+        perfect = "Picture Perfect"
         header = profile_user.username
         posts = Post.objects.filter(author=profile_user).order_by("-post_date")
         count = profile_user.following.count()
-        return render(request, template, {'profile': profile_user, 'posts': posts, 'count': count, 'header': header})
+        return render(request, template, {'profile': profile_user, 'posts': posts, 'count': count, 'header': header, 'perfect': perfect})
 
 
 @login_required

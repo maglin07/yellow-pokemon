@@ -22,7 +22,8 @@ from frontend import views
 from profile_page.urls import urlpatterns as profile_page_urls
 from user_interaction.urls import urlpatterns as user_interaction_urls
 from authentication.views import check, signup_view, LoginView, logout_view, FollowView, UnfollowView
-
+from simple_chatbot.views import SimpleChatbot
+from media.views import Terms, FAQ
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,6 +34,9 @@ urlpatterns = [
     path('signup/', signup_view, name='signup'),
     path('following/<int:follow_id>/', FollowView.as_view()),
     path('unfollowing/<int:unfollow_id>/', UnfollowView.as_view()),
+    path('simple_chatbot/', SimpleChatbot.as_view()),
+    path('signup/FAQ/', FAQ),
+    path('terms/', Terms),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += profile_page_urls

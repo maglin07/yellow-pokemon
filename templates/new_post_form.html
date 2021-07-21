@@ -18,12 +18,26 @@
   <body>
     <div class="container">
       {% include 'nav.html' %}
-      <h1 class="text-center">{{ header }}</h1>
+      <div class="justify-center">P</div>  
+      <h1 class="box">Picture Perfect</h1>
       <form enctype="multipart/form-data" method="post">
         {% csrf_token %} {{ form.non_field_errors }}
         <div class="fieldWrapper form-group">
-          {{ form.title.errors }}
-          <label for="title">Title</label>
+          {{ form.first_name.errors }}
+          <center>
+            <form class = "form">   
+              <p>{{form.as_p}}</p>
+              {{ form.avatar_image.errors }}
+              <br><br>
+              <input
+              type="submit"
+              value="Submit"
+              class="btn btn-primary btn-lg my-2"
+            />
+              
+              </form>
+            </center>
+          <!-- <label for="title">Title</label>
           <input
             required
             type="text"
@@ -57,13 +71,13 @@
             id="image"
             class="form-control"
           />
-        </div>
-        <div class="d-grid">
+        </div> -->
+        <!-- <div class="d-grid">
           <input
             type="submit"
             value="Submit"
             class="btn btn-primary btn-lg my-2"
-          />
+          /> -->
         </div>
       </form>
     </div>
@@ -74,5 +88,61 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <p><a href="/simple_chatbot" class = 'agent'>Live Agent</a> <a href="about" class = 'agent1'>About Us</a>
+      <a href="/terms" class = 'agent2'>Terms</a><a href="/terms" class = 'agent2'>help</a></p>
+      <script type="text/javascript" src="//vhss-d.oddcast.com/vhost_embed_functions_v4.php?acc=8167024&js=0"></script><script type="text/javascript">AC_VHost_Embed(8167024,480,256,"",1,1,2735691,0,1,0,"iPaM3RH589Y9EOTXSkNUDkTY7RvY0O9k",0,"256|480|15|15|L|B|false|0|0|0|0|vhss-d.oddcast.com/admin/img//no_image.jpg|Double%20click%20to%20play%20me|0|C|0|0|0|0");</script>
+    <style>
+      .form{color: blue;}
+     
+      body{background-image:linear-gradient(to bottom, white, rgb(0, 195, 255),blue);}
+      .justify-center{
+        background-color:Blue;
+        margin-left: 270px;
+        padding-left: 15px;
+        font-family: Parchment;
+        color: white;
+        /* padding-bottom: 5px; */
+        font-size: 42px;
+        font-weight: 600
+      }
+      .box{
+        box-shadow: 1px 1px 1px 1px lightgray;
+
+        text-align: center;
+        font-size: 32px;
+        font-family: script mt;
+        position: absolute;
+        margin-top: -55px;
+        margin-left: 335px;
+        height: 47Px;
+        width: 250px;
+        background-color: white;
+      }
+      center{
+        background-color:white;       
+        width: 350px;
+        height: 450px;
+        border: 5px 5px 5px 5px red;
+        padding: 30px 20px 20px 20px;
+        text-align: left;
+        margin-left: 50%;
+        box-shadow: 5px 5px 5px #999;
+      }
+      .login{
+        margin-left: 100px;
+      }
+      .login{
+        margin-left: 100px;
+      }
+      .agent{
+        margin-left: 270px;
+      }
+      .agent1{
+        margin-left: 20px;
+      }
+      .agent2{
+        margin-left: 20px;
+      } 
+      
   </body>
 </html>

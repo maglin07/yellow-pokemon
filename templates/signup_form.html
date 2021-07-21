@@ -18,12 +18,27 @@
   <body>
     <div class="container">
       {% include 'nav.html' %}
-      <h1 class="text-center">{{ header }}</h1>
+      <div class="justify-center">P</div>  
+      <h1 class="box">{{ header }}</h1>
       <form enctype="multipart/form-data" method="post">
         {% csrf_token %} {{ form.non_field_errors }}
         <div class="fieldWrapper form-group">
           {{ form.first_name.errors }}
-          <label for="first_name">First name</label>
+          <center>
+          <form id = "marg">   
+            <p>{{form.as_p}}</p>
+            {{ form.avatar_image.errors }}
+            <input
+            type="submit"
+            value="Sign Up"
+            class="btn btn-primary btn-lg my-2"
+          />
+            <br><br>
+            
+            </form>
+          </center>  
+           
+          <!-- <label for="first_name">First name</label>
           <input
             type="text"
             name="first_name"
@@ -70,8 +85,8 @@
             class="form-control"
             placeholder="Password"
           />
-        </div>
-        <div class="fieldWrapper form-group">
+        </div> -->
+        <!-- <div class="fieldWrapper form-group">
           {{ form.avatar_image.errors }}
           <label for="avatar_image">Avatar image</label>
           <input
@@ -81,14 +96,14 @@
             id="avatar_image"
             class="form-control"
           />
-        </div>
-        <div class="d-grid">
+        </div> -->
+        <!-- <div class="d-grid">
           <input
             type="submit"
             value="Sign Up"
             class="btn btn-primary btn-lg my-2"
           />
-        </div>
+        </div> -->
       </form>
     </div>
 
@@ -98,5 +113,55 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <p><a href="/simple_chatbot" class = 'agent'>Live Agent</a> <a href="/FAQ/" class = 'agent1'>FAQ</a>
+      <a href="/terms" class = 'agent2'>Terms</a><a href="/terms" class = 'agent2'>help</a></p>
+      <script type="text/javascript" src="//vhss-d.oddcast.com/vhost_embed_functions_v4.php?acc=8167024&js=0"></script><script type="text/javascript">AC_VHost_Embed(8167024,480,256,"",1,1,2735750,0,1,0,"Y1yH7HIXPCMzowunxGtpLgJWdMGXW75M",0,"256|480|15|15|L|B|false|0|0|0|0|vhss-d.oddcast.com/admin/img//no_image.jpg|Double%20click%20to%20play%20me|0|C|0|0|0|0");</script>
+    <style>
+       body{background-image:linear-gradient(to bottom, white, rgb(0, 195, 255),blue);}
+      .justify-center{
+        background-color: blue;
+        margin-left: 270px;
+        padding-left: 15px;
+        font-family: Parchment;
+        color: white;
+        /* padding-bottom: 5px; */
+        font-size: 42px;
+        font-weight: 600
+      }
+      .box{
+        box-shadow: 1px 1px 1px 1px lightgray;
+
+        text-align: center;
+        font-size: 32px;
+        font-family: script mt;
+        position: absolute;
+        margin-top: -55px;
+        margin-left: 335px;
+        height: 47Px;
+        width: 250px;
+        background-color: white;
+      }
+      center{
+        background-color: white;       
+        width: 300px;
+        height: 450px;
+        border: 5px 5px 5px 5px red;
+        padding: 30px 20px 20px 20px;
+        text-align: left;
+        margin-left: 50%;
+        box-shadow: 5px 5px 5px #999;
+      }
+      .login{
+        margin-left: 100px;
+      }
+      .agent{
+        margin-left: 200px;
+      }
+      .agent1{
+        margin-left: 20px;
+      }
+      .agent2{
+        margin-left: 20px;
+      }
   </body>
 </html>

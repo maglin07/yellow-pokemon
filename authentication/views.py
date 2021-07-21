@@ -9,7 +9,7 @@ from django.views.generic import TemplateView
 # Create your views here.
 
 def signup_view(request):
-    header = "Sign Up"
+    header = "Picture Perfect"
     if request.method == "POST":
         form = SignUpForm(request.POST, request.FILES)
         if form.is_valid():
@@ -30,7 +30,7 @@ def signup_view(request):
 
 
 class LoginView(TemplateView):
-    header = "Login"
+    header = "Picture Perfect"
     
     def get(self, request):
         form = LoginForm()
